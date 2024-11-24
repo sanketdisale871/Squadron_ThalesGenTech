@@ -1,5 +1,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
+    <!-- <img src="./controllers/logo.png" alt="GlobalEase Logo" width="150"> -->
+    <img src="./public/img/logo.png" alt="GlobalEase Logo" width="150">
   <h1 align="center"><b>VigiSafe: AI-powered cyber threat prediction and defense.</b></h1>
 
 </div>
