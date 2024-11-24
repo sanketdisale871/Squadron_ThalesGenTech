@@ -1,0 +1,94 @@
+{
+  "cyber_attacks": [
+    {
+      "name": "Phishing Attack",
+      "description": "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity.",
+      "mitigation_techniques": [
+        "Verify the sender's email address and URLs before clicking on any links.",
+        "Enable email filtering to identify and block suspicious emails.",
+        "Conduct regular employee training on identifying phishing attempts."
+      ]
+    },
+    {
+      "name": "Ransomware",
+      "description": "Malware that encrypts a victim's data and demands payment for the decryption key.",
+      "mitigation_techniques": [
+        "Regularly back up important data to offline or cloud storage.",
+        "Keep all software, including antivirus, updated to the latest versions.",
+        "Implement strict access controls and endpoint protection."
+      ]
+    },
+    {
+      "name": "SQL Injection",
+      "description": "An attack that involves injecting malicious SQL code to manipulate a database.",
+      "mitigation_techniques": [
+        "Use parameterized queries and prepared statements for database queries.",
+        "Sanitize and validate all user inputs before processing.",
+        "Implement robust error handling to avoid revealing database details."
+      ]
+    },
+    {
+      "name": "Cross-Site Scripting (XSS)",
+      "description": "A vulnerability that allows attackers to inject malicious scripts into webpages viewed by other users.",
+      "mitigation_techniques": [
+        "Sanitize and encode user inputs to prevent script injection.",
+        "Implement Content Security Policy (CSP) to restrict the execution of untrusted scripts.",
+        "Regularly test and patch web applications for XSS vulnerabilities."
+      ]
+    },
+    {
+      "name": "Denial-of-Service (DoS) Attack",
+      "description": "An attack that overwhelms a network or service with excessive traffic to disrupt its functionality.",
+      "mitigation_techniques": [
+        "Use firewalls and intrusion detection systems to identify and block malicious traffic.",
+        "Deploy load balancers to distribute traffic and prevent overloading.",
+        "Establish a response plan with your hosting provider for handling such attacks."
+      ]
+    },
+    {
+      "name": "Man-in-the-Middle (MITM) Attack",
+      "description": "An attack where a third party intercepts and manipulates communication between two parties.",
+      "mitigation_techniques": [
+        "Use end-to-end encryption protocols like HTTPS and VPNs.",
+        "Avoid using public Wi-Fi for sensitive transactions.",
+        "Implement two-factor authentication for additional security."
+      ]
+    },
+    {
+      "name": "Zero-Day Exploit",
+      "description": "An attack that targets a software vulnerability unknown to the vendor or public.",
+      "mitigation_techniques": [
+        "Keep all software and applications updated with the latest security patches.",
+        "Use threat intelligence services to identify and mitigate emerging vulnerabilities.",
+        "Implement network segmentation to contain potential attacks."
+      ]
+    },
+    {
+      "name": "Insider Threat",
+      "description": "A security risk originating from within the organization, often by employees or contractors.",
+      "mitigation_techniques": [
+        "Conduct regular background checks and monitoring of employees.",
+        "Implement role-based access controls to limit data access.",
+        "Use security tools to monitor and detect unusual behavior or data exfiltration."
+      ]
+    },
+    {
+      "name": "Credential Stuffing",
+      "description": "An attack where stolen usernames and passwords are used to gain unauthorized access to accounts.",
+      "mitigation_techniques": [
+        "Enforce multi-factor authentication on all accounts.",
+        "Encourage users to use unique passwords for each account.",
+        "Monitor and block suspicious login attempts using AI-driven tools."
+      ]
+    },
+    {
+      "name": "Malware",
+      "description": "Malicious software designed to harm or exploit any programmable device, network, or server.",
+      "mitigation_techniques": [
+        "Install and update antivirus and anti-malware tools.",
+        "Avoid downloading files or software from untrusted sources.",
+        "Educate employees about identifying and avoiding malware attacks."
+      ]
+    }
+  ]
+}

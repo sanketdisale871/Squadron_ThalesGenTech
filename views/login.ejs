@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VigiSafe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript">
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="/css/auth.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link
+      href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <!-- //web font -->
+    <link
+      href="/css/homeParkEace.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <style>
+      .main-nav {
+        border-radius: 20px;
+        justify-content: space-between;
+        margin-top: 1rem;
+        margin-right: 3rem;
+        background-color: #041646;
+        padding: 0.8rem;
+      }
+      .banner-text {
+        color: #ffffff;
+        padding: 0.9rem 0.8rem;
+        margin-left: 2.4rem;
+      }
+      .small-bold-text {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .naVV {
+        background-color: #041646;
+        border-radius: 20px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-top: 2rem;
+      }
+      .nav-links ul {
+        justify-content: end;
+        gap: 5%;
+      }
+      .header-section {
+        justify-content: center;
+        gap: 15%;
+        margin-top: 2rem;
+      }
+      .header-left {
+        max-width: 40vw;
+        margin-left: 4rem;
+        /* margin-top: 4rem; */
+      }
+      p {
+        text-align: justify;
+      }
+      .main-agileinfo h1 {
+        padding-top: 10%;
+        margin-bottom: -10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar  -->
+    <nav class="naVV">
+      <div class="container main-nav flex">
+        <a href="/" class="company-logo">
+          <img src="/img/logo.png" alt="Company Logo" />
+        </a>
+        <div class="nav-links">
+          <!-- ShortCut ul>li*6>a  -->
+          <ul class="flex" style="font-weight: bold; font-size: 1rem">
+            <li>
+              <a
+                href="/login"
+                class="hover-links secondaryBtn"
+                style="width: 6rem; padding: 0.5rem; text-align: center"
+                >Log In</a
+              >
+            </li>
+            <li>
+              <a
+                href="/register"
+                class="hover-links primaryBtn"
+                tyle="width: 6rem;
+				  padding: 0.5rem;
+				  text-align: center;"
+                >Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-w3layouts wrapper">
+      <% if(errMsg){ %>
+      <div class="message"><%=errMsg%></div>
+      <% } %>
+      <div class="main-agileinfo" style="background-color: #041646">
+        <h1>Login</h1>
+        <div class="agileits-top">
+          <form action="/api/login" method="post">
+            <input
+              class="text email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              class="text"
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <input type="submit" value="LOGIN" />
+          </form>
+          <p>
+            Dont have an Account?
+            <a href="/register">
+              <span style="color: white">Create Account!</span></a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- //main -->
+  </body>
+</html>

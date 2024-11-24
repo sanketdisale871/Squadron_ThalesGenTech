@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Custom Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+
+
+  <title>VigiSafe</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+
+  <!-- Sidebar CSS -->
+  <style>
+    .sidebar {
+      font-family: "Poppins", sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #041643;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      box-shadow: 2px 1px 6px rgb(249, 255, 235);
+    }
+
+    .sidebar .logo {
+      width: 90%;
+      margin-bottom: 5%;
+    }
+
+    .sidebar.active {
+      width: 100px;
+      overflow: hidden;
+    }
+
+    .sidebar li {
+      list-style: none;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+    }
+
+    .sidebar ul {
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .sidebar span {
+      margin-right: 15px;
+    }
+
+    .sidebar--items a,
+    .sidebar--bottom-items a {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #ffffff;
+      padding: 7px;
+      border-radius: 13px;
+    }
+
+    .sidebar--items a:hover,
+    .sidebar--bottom-items a:hover {
+      background-color: #cdffcf;
+      color: #0031b9;
+    }
+
+    #active--link {
+      background-color: #39c440;
+      color: #fff;
+    }
+
+    .sidebar--items {
+      flex-grow: 0.85;
+      /* This makes the navigation items take up the remaining space */
+    }
+  </style>
+
+
+
+  <style>
+    .section-name {
+      font-family: "Poppins", sans-serif;
+    }
+
+    .overview {
+      font-family: "Poppins", sans-serif;
+    }
+
+    div {
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+
+  <style>
+    .expand-card:hover {
+      transform: scale(1.02);
+
+      box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.2);
+
+    }
+  </style>
+
+
+<style>
+  .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 9% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 453px;
+  height: min-content;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input,
+form select {
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+  <!-- Navigation drawer -->
+  <div class="sidebar">
+    <!-- Logo Image -->
+    <img src="/img/logo.png" alt="description" class="logo" />
+
+    <!-- Horizantal Rule -->
+    <hr style="width: 100%; margin-bottom: 10%" />
+
+    <!-- Navigation Items -->
+    <ul class="sidebar--items">
+      <li>
+        <a href="/" id="active--link">
+          <span class="icon icon-1">
+            <i class="ri-layout-grid-line"></i>
+          </span>
+          <span class="sidebar--item">Dashboard</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/predict">
+          <span class="icon icon-2"><i class="ri-line-chart-line"></i></span>
+          <span class="sidebar--item">Attack Prediction</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="/thalesGPT">
+          <span class="icon icon-2"><i class="ri-robot-3-fill"></i></span>
+          <span class="sidebar--item">thalesGPT</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <ul class="sidebar--bottom-items">
+      <li>
+        <a href="/api/logout">
+          <span class="icon icon-8">
+            <i class="ri-logout-circle-line"></i>
+          </span>
+          <span class="sidebar--item">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Body -->
+  <div style="margin-left: 300px; padding-left: 20px">
+
+    <div class="section-name"
+      style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #ffffff; box-shadow: 2px 5px 20px rgba(12, 12, 12, 0.1);">
+
+      <div style="font-size: 22px; font-weight: bold; color: #000000; ">
+        Dashboard
+      </div>
+
+      <div style="display: flex; align-items: center;">
+
+
+        <div style="text-align: right; margin-right: 10px;">
+          <div style="font-size: 16px; font-weight: bold; color: #041643;">
+            Sanket Disale
+          </div>
+      
+        </div>
+
+
+        <div
+          style="width: 50px; height: 50px; border-radius: 50%; background-color: #000000; display: flex; align-items: center; justify-content: center;">
+          <i class="ri-account-circle-fill" style="font-size: 40px; color: #ffffff;"></i>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="overview">
+      <!-- Overview Heading -->
+      <h2
+        style="font-size: 22px; font-weight: bold; color: #333; margin-top: 30px; margin-bottom: 20px; padding-left: 10px;">
+        Overview
+      </h2>
+
+      <!-- Row with 3 Columns -->
+      <div style="display: flex; justify-content: space-between; padding-left: 15px; padding-right: 15px; ">
+
+
+        <div style="flex: 1; margin-right: 10px;">
+          <div class="expand-card"
+            style="background-color:#e8efff; padding: 15px; border-radius: 10px; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.1); text-align: left;">
+            <div style="display: flex; flex-direction: row; align-items: center;justify-content: space-between; ">
+              <div style="font-size: 30px; font-weight: bold; color: #000000;">
+                1025
+              </div>
+              <div style="font-size: 50px; color: #072777; margin-bottom: 0px;">
+                <i class="ri-cash-fill"></i>
+              </div>
+            </div>
+
+            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">
+              Total Detected Attacks
+            </div>
+
+          </div>
+        </div>
+
+        <div style="flex: 1; margin-right: 10px;">
+          <div class="expand-card"
+            style="background-color:#e4ffe0; padding: 15px; border-radius: 10px; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.1); text-align: left;">
+            <div style="display: flex; flex-direction: row; align-items: center;justify-content: space-between; ">
+              <div style="font-size: 30px; font-weight: bold; color: #000000;">
+                250
+              </div>
+
+              <div style="font-size: 50px; color: #072777; margin-bottom: 0px;">
+                <i class="ri-database-2-fill"></i>
+              </div>
+
+            </div>
+            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">
+              Honeypot Attack Count 
+            </div>
+
+          </div>
+        </div>
+
+        <div style="flex: 1; margin-right: 10px;">
+          <div class="expand-card"
+            style="background-color:#fffce0; padding: 15px; border-radius: 10px; box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.1); text-align: left;">
+            <div style="display: flex; flex-direction: row; align-items: center;justify-content: space-between; ">
+              <div style="font-size: 30px; font-weight: bold; color: #000000;">
+               1245
+              </div>
+
+              <div style="font-size: 50px; color: #072777; margin-bottom: 0px;">
+                <i class="ri-search-eye-line"></i>
+              </div>
+
+            </div>
+            <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">
+              Number of URLs Analyzed
+            </div>
+
+          </div>
+        </div>
+
+    
+
+        
+        
+      </div>
+    </div>
+
+    <!-- Modal for Invest More -->
+    <div id="investMoreModal" class="modal">
+      
+    </div>
+    
+    
+
+    <h2
+        style="font-size: 22px; font-weight: bold; color: #333; margin-top: 30px; margin-bottom: 20px; padding-left: 10px;">
+        Visualization
+      </h2>
+
+    <div style="
+      margin:30px;
+      display: flex;
+      width: auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      justify-content: space-around;
+      height: 400px;
+    ">
+      <!-- Column 1: Pie Chart -->
+      <div style="
+              flex: 1;
+              padding: 10px; /* Reduce padding */
+              border-right: 1px solid #e0e0e0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+            <h3>Distribution of Cyber <br>Attack Types</h3> <br>
+           
+        <canvas id="liabilitiesPieChart" style="width: 80%; height: 80%;"> /canvas> <!-- Adjusted canvas size -->
+      </div>
+
+      <!-- Column 2: Line Chart -->
+      <div style="
+              flex: 1;
+              padding: 10px; /* Reduce padding */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+        <canvas id="liabilitiesGrowthChart" style="width: 80%; height: 80%;"></canvas> <!-- Adjusted canvas size -->
+      </div>
+    </div>
+
+    <h2
+        style="font-size: 22px; font-weight: bold; color: #333; margin-top: 30px; margin-bottom: 20px; padding-left: 10px;">
+        Threat Details
+      </h2>
+    <div style="
+      margin: 30px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    ">
+      <table style="
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+      ">
+        <!-- Table Header -->
+        <thead>
+          <tr style="
+            background-color: #f5f7fa;
+            text-align: left;
+            border-bottom: 2px solid #e0e0e0;
+            color: #072777;
+          ">
+            <th style="padding: 15px 10px;">Threat Type</th>
+            <th style="padding: 15px 10px;">Source</th>
+            <th style="padding: 15px 10px;">Timestamp</th>
+            <th style="padding: 15px 10px;">Status</th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody>
+          <!-- Example Row 1 -->
+          <tr style="
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s;
+          " onmouseover="this.style.backgroundColor='#f0f4f8';" onmouseout="this.style.backgroundColor='transparent';">
+            <td style="padding: 15px 10px;">Phishing</td>
+            <td style="padding: 15px 10px;">example.com</td>
+            <td style="padding: 15px 10px;">2024-12-01 10:15 AM</td>
+            <td style="padding: 15px 10px;">
+              <span style="
+                background-color: #ffcd56;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: #333;
+                font-weight: bold;
+              ">Mitigated</span>
+            </td>
+          </tr>
+
+          <!-- Example Row 2 -->
+          <tr style="
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s;
+          " onmouseover="this.style.backgroundColor='#f0f4f8';" onmouseout="this.style.backgroundColor='transparent';">
+            <td style="padding: 15px 10px;">Malware</td>
+            <td style="padding: 15px 10px;">192.168.1.10</td>
+            <td style="padding: 15px 10px;">2024-11-06 3:42 PM </td>
+            <td style="padding: 15px 10px;">
+              <span style="
+                background-color: #4caf50;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+              ">Resolved</span>
+            </td>
+          </tr>
+
+          <!-- Example Row 3 -->
+          <tr style="
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s;
+          " onmouseover="this.style.backgroundColor='#f0f4f8';" onmouseout="this.style.backgroundColor='transparent';">
+            <td style="padding: 15px 10px;">SQL Injection</td>
+            <td style="padding: 15px 10px;">suspicious.sql</td>
+            <td style="padding: 15px 10px;">2024-11-05 1:30 PM	</td>
+            <td style="padding: 15px 10px;">
+              <span style="
+                background-color: #f44336;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+              ">Investigated</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <!-- Pie Chart and Graph ki script -->
+    <script>
+      // Pie Chart
+      const ctxPie = document
+        .getElementById("liabilitiesPieChart")
+        .getContext("2d");
+      const liabilitiesPieChart = new Chart(ctxPie, {
+        type: "doughnut",
+        data: {
+          labels: ['Phishing', 'Ransomware', 'DDoS Attacks', 'Malware', 'SQL Injection', 'Others'],
+          datasets: [
+            {
+              label: "Cyber Attack Distribution",
+              data: [35, 25, 15, 15, 5, 5],
+              backgroundColor: ["#4caf50", "#2196F3", "#ff9800", "#f44336","#ffb3e6","#66b3ff"],
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+        },
+      });
+
+      // Line Chart
+      const ctxLine = document
+        .getElementById("liabilitiesGrowthChart")
+        .getContext("2d");
+      const liabilitiesGrowthChart = new Chart(ctxLine, {
+        type: "bar",
+        data: {
+          labels: ['Phishing', 'Ransomware', 'DDoS Attacks', 'Malware', 'SQL Injection', 'Others'],
+          datasets: [
+            {
+              label: "Cyber Attack Frequency Analysis",
+              data: [120, 90, 75, 60, 40, 20],
+              borderColor: "#ff9999",
+              backgroundColor: "#66b3ff",
+              fill: true,
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "top",
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+            },
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+
+    <!-- Modal Logic -->
+    <script>
+      const investMoreModal = document.getElementById("investMoreModal");
+      const investMoreBtn = document.getElementById("investMoreBtn");
+      const closeInvestMore = document.getElementById("closeInvestMore");
+
+      investMoreBtn.onclick = function () {
+        investMoreModal.style.display = "flex";
+      };
+
+      closeInvestMore.onclick = function () {
+        investMoreModal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == investMoreModal) {
+          investMoreModal.style.display = "none";
+        }
+        if (event.target == withdrawModal) {
+          withdrawModal.style.display = "none";
+        }
+      };
+
+      const withdrawModal = document.getElementById("withdrawModal");
+      const withdrawBtn = document.getElementById("withdrawBtn");
+      const closeWithdraw = document.getElementById("closeWithdraw");
+
+      withdrawBtn.onclick = function () {
+            withdrawModal.style.display = "flex";
+          };
+        
+          closeWithdraw.onclick = function () {
+            withdrawModal.style.display = "none";
+          };
+
+
+    </script>
+</body>
+
+</html>

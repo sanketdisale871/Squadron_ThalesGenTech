@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VigiSafe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript">
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="/css/auth.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link
+      href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <!-- //web font -->
+    <link
+      href="/css/homeParkEace.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+
+    <style>
+      .main-nav {
+        border-radius: 20px;
+        justify-content: space-between;
+        margin-top: 1rem;
+        margin-right: 3rem;
+        background-color: #041646;
+        padding: 0.8rem;
+      }
+      .banner-text {
+        color: #ffffff;
+        padding: 0.9rem 0.8rem;
+        margin-left: 2.4rem;
+      }
+      .small-bold-text {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .naVV {
+        background-color: #041646;
+        border-radius: 20px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-top: 2rem;
+      }
+      .nav-links ul {
+        justify-content: end;
+        gap: 5%;
+      }
+      .header-section {
+        justify-content: center;
+        gap: 15%;
+        margin-top: 2rem;
+      }
+      .header-left {
+        max-width: 40vw;
+        margin-left: 4rem;
+        /* margin-top: 4rem; */
+      }
+      p {
+        text-align: justify;
+      }
+      .main-agileinfo {
+        width: 35%;
+        margin: 3em auto;
+        background: 539e43;
+        background-size: cover;
+        border-radius: 1rem;
+        /* height: 103%; */
+      }
+      .main-agileinfo h1 {
+        padding-top: 2%;
+        margin-bottom: -10px;
+      }
+      input[type="submit"] {
+        margin: 0;
+      }
+    </style>
+    <style>
+      .registration-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .registration-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007bff;
+      }
+
+      .registration-group {
+        margin-bottom: 15px;
+      }
+
+      .registration-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .registration-input,
+      .registration-select {
+        width: 100% !important;
+        padding: 12px !important;
+        border: 3px solid #ccc !important;
+        border-radius: 4px !important;
+        background-color: #ffffff00 !important;
+        color: white;
+      }
+
+      .registration-submit {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 100%;
+      }
+
+      .registration-submit:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- main -->
+
+    <!-- Navbar  -->
+    <nav class="naVV">
+      <div class="container main-nav flex">
+        <a href="/" class="company-logo">
+          <img src="/img/logo.png" alt="Company Logo" />
+        </a>
+        <div class="nav-links">
+          <!-- ShortCut ul>li*6>a  -->
+          <ul class="flex" style="font-weight: bold; font-size: 1rem">
+            <li>
+              <a
+                href="/login"
+                class="hover-links secondaryBtn"
+                style="width: 6rem; padding: 0.5rem; text-align: center"
+                >Log In</a
+              >
+            </li>
+            <li>
+              <a
+                href="/register"
+                class="hover-links primaryBtn"
+                tyle="width: 6rem;
+					padding: 0.5rem;
+					text-align: center;"
+                >Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main-w3layouts wrapper">
+      <% if(errMsg){ %>
+      <div class="message"><%=errMsg%></div>
+      <% } %>
+
+      <div class="main-agileinfo" style="background-color: #041646">
+        <h1>Register</h1>
+        <div class="agileits-top">
+          <form action="/api/register" method="POST">
+            <div class="registration-group">
+              <label for="userName" class="registration-label">Name:</label>
+              <input
+                type="text"
+                id="userName"
+                name="name"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userEmail" class="registration-label">Email:</label>
+              <input
+                type="email"
+                id="userEmail"
+                name="email"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userPassword" class="registration-label"
+                >Password:</label
+              >
+              <input
+                type="password"
+                id="userPassword"
+                name="password"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userRePassword" class="registration-label"
+                >Confirm Password:</label
+              >
+              <input
+                type="password"
+                id="userRePassword"
+                name="repassword"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userPhone" class="registration-label"
+                >Phone No:</label
+              >
+              <input
+                type="tel"
+                id="userPhone"
+                name="phone"
+                class="registration-input"
+                pattern="[0-9]{10}"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userDob" class="registration-label"
+                >Date of Birth:</label
+              >
+              <input
+                type="date"
+                id="userDob"
+                name="dob"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userCountry" class="registration-label"
+                >Country:</label
+              >
+              <select
+                id="userCountry"
+                name="country"
+                class="registration-select"
+                required
+              >
+                <option value="">Select Country</option>
+                <option value="US">United States</option>
+                <option value="IN">India</option>
+                <option value="UK">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+
+            <div class="registration-group">
+              <label for="userOccupation" class="registration-label"
+                >Occupation</label
+              >
+              <input
+                type="text"
+                id="userOccupation"
+                name="occupation"
+                class="registration-input"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <label for="userCurrency" class="registration-label"
+                >Currency:</label
+              >
+              <select
+                id="userCurrency"
+                name="currency"
+                class="registration-select"
+                required
+              >
+                <option value="">Select Currency</option>
+                <option value="USD">USD</option>
+                <option value="INR">INR</option>
+                <option value="GBP">GBP</option>
+                <option value="AUD">AUD</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+
+            <div class="registration-group">
+              <label for="userIncome" class="registration-label"
+                >Annual Income:</label
+              >
+              <input
+                type="number"
+                id="userIncome"
+                name="annualIncome"
+                class="registration-input"
+                placeholder="Enter amount in USD"
+                required
+              />
+            </div>
+
+            <div class="registration-group">
+              <input type="submit" value="Submit" class="registration-submit" />
+            </div>
+          </form>
+          <p>Already have an Account? <a href="/login"> Login Now!</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- //main -->
+  </body>
+</html>

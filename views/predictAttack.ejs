@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Custom Styles -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <title>VigiSafe</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Sidebar CSS -->
+    <style>
+      .sidebar {
+        font-family: "Poppins", sans-serif;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #041643;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 2px 1px 6px rgb(249, 255, 235);
+      }
+
+      .sidebar .logo {
+        width: 90%;
+        margin-bottom: 5%;
+      }
+
+      .sidebar.active {
+        width: 100px;
+        overflow: hidden;
+      }
+
+      .sidebar li {
+        list-style: none;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+      }
+
+      .sidebar ul {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .sidebar span {
+        margin-right: 15px;
+      }
+
+      .sidebar--items a,
+      .sidebar--bottom-items a {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        color: #ffffff;
+        padding: 7px;
+        border-radius: 13px;
+      }
+
+      .sidebar--items a:hover,
+      .sidebar--bottom-items a:hover {
+        background-color: #cdffcf;
+        color: #0031b9;
+      }
+
+      #active--link {
+        background-color: #39c440;
+        color: #fff;
+      }
+
+      .sidebar--items {
+        flex-grow: 0.85;
+        /* This makes the navigation items take up the remaining space */
+      }
+    </style>
+
+    <style>
+      .section-name {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .overview {
+        font-family: "Poppins", sans-serif;
+      }
+
+      div {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+
+    <style>
+      .expand-card:hover {
+        transform: scale(1.02);
+
+        box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 9% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 15px;
+        width: 453px;
+        height: min-content;
+      }
+
+      .close {
+        float: right;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form input,
+      form select {
+        margin-bottom: 10px;
+      }
+    </style>
+    <style>
+      .vigiSafe-container {
+        max-width: 848px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        padding: 30px 20px;
+        text-align: center;
+        margin: 20px;
+        margin-left: 13rem;
+      }
+
+      .vigiSafe-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 20px;
+      }
+
+      .vigiSafe-form label {
+        display: block;
+        font-size: 16px;
+        color: #4a5568;
+        text-align: left;
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .vigiSafe-form input {
+        width: 92%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #cbd5e0;
+        border-radius: 6px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s ease-in-out;
+      }
+
+      .vigiSafe-form input:focus {
+        border-color: #3182ce;
+      }
+
+      .vigiSafe-form button {
+        width: 100%;
+        padding: 12px;
+        background-color: #041643;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        margin-top: 15px;
+      }
+
+      .vigiSafe-form button:hover {
+        background-color: #cdffcf;
+        color: #0031b9;
+      }
+
+      .vigiSafe-output {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e6fffa;
+        border: 1px solid #38a169;
+        border-radius: 6px;
+      }
+
+      .vigiSafe-output h2 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2f855a;
+        margin-bottom: 10px;
+      }
+
+      .vigiSafe-output p {
+        font-size: 16px;
+        color: #2d3748;
+      }
+
+      .vigiSafe-hidden {
+        display: none;
+      }
+
+      .vigiSafe-error-message {
+        color: #e53e3e;
+        font-size: 14px;
+        text-align: left;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation drawer -->
+    <div class="sidebar">
+      <!-- Logo Image -->
+      <img src="/img/logo.png" alt="description" class="logo" />
+
+      <!-- Horizantal Rule -->
+      <hr style="width: 100%; margin-bottom: 10%" />
+
+      <!-- Navigation Items -->
+      <ul class="sidebar--items">
+        <li>
+          <a href="/">
+            <span class="icon icon-1">
+              <i class="ri-layout-grid-line"></i>
+            </span>
+            <span class="sidebar--item">Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/predict" id="active--link">
+            <span class="icon icon-2"><i class="ri-line-chart-line"></i></span>
+            <span class="sidebar--item">Attack Prediction</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/thalesGPT">
+            <span class="icon icon-2"><i class="ri-robot-3-fill"></i></span>
+            <span class="sidebar--item">thalesGPT</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="sidebar--bottom-items">
+        <li>
+          <a href="/api/logout">
+            <span class="icon icon-8">
+              <i class="ri-logout-circle-line"></i>
+            </span>
+            <span class="sidebar--item">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Body -->
+    <div style="margin-left: 300px; padding-left: 20px">
+      <div
+        class="section-name"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          background-color: #ffffff;
+          box-shadow: 2px 5px 20px rgba(12, 12, 12, 0.1);
+        "
+      >
+        <div style="font-size: 22px; font-weight: bold; color: #000000">
+          Predict Your Attack
+        </div>
+
+        <div style="display: flex; align-items: center">
+          <div style="text-align: right; margin-right: 10px">
+            <div style="font-size: 16px; font-weight: bold; color: #041643">
+              Sanket Disale
+            </div>
+          </div>
+
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background-color: #000000;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <i
+              class="ri-account-circle-fill"
+              style="font-size: 40px; color: #ffffff"
+            ></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="vigiSafe-container">
+        <form class="vigiSafe-form" id="upload-form">
+          <label for="url-input">Enter a URL:</label>
+          <input type="text" id="url-input" placeholder="Enter URL here..." />
+
+          <label for="file-upload">Or Upload a File:</label>
+          <input type="file" id="file-upload" />
+
+          <button type="submit" id="classify-button">Classify</button>
+        </form>
+
+        <div class="vigiSafe-output vigiSafe-hidden" id="output-container">
+          <h2>Classification Result</h2>
+          <p id="output-message"></p>
+        </div>
+
+        <p
+          class="vigiSafe-error-message vigiSafe-hidden"
+          id="error-message"
+        ></p>
+      </div>
+
+      <script>
+        // Select elements
+        const uploadForm = document.getElementById("upload-form");
+        const urlInput = document.getElementById("url-input");
+        const fileInput = document.getElementById("file-upload");
+        const outputContainer = document.getElementById("output-container");
+        const outputMessage = document.getElementById("output-message");
+        const errorMessage = document.getElementById("error-message");
+
+        // Add event listener to the form
+        uploadForm.addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent form submission
+
+          const urlValue = urlInput.value.trim();
+          const fileValue = fileInput.files[0];
+
+          // Reset error message and output
+          errorMessage.classList.add("vigiSafe-hidden");
+          outputContainer.classList.add("vigiSafe-hidden");
+          outputMessage.textContent = "";
+
+          // Validate input
+          if (!urlValue && !fileValue) {
+            errorMessage.textContent = "Please provide a URL or upload a file.";
+            errorMessage.classList.remove("vigiSafe-hidden");
+            return;
+          }
+
+          // Show loading message
+          outputMessage.textContent = "Processing your request...";
+          outputContainer.classList.remove("vigiSafe-hidden");
+
+          // Simulate classification delay
+          // Simulate classification delay
+          setTimeout(() => {
+            const attackTypes = [
+              "Phishing",
+              "SQL Injection",
+              "Malware",
+              "DDoS",
+              "Ransomware",
+            ];
+            const randomAttack =
+              attackTypes[Math.floor(Math.random() * attackTypes.length)];
+
+            if (urlValue) {
+              outputMessage.innerHTML = `The URL "${urlValue}" is classified as: <strong>${randomAttack}</strong>`;
+            } else if (fileValue) {
+              outputMessage.innerHTML = `The uploaded file "${fileValue.name}" is classified as: <strong>${randomAttack}</strong>`;
+            }
+          }, 2000);
+        });
+      </script>
+
+      <!-- Modal for Invest More -->
+      <div id="investMoreModal" class="modal"></div>
+    </div>
+  </body>
+</html>
