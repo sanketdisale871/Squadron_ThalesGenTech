@@ -71,9 +71,10 @@ The technologies and tools used are:
 
 ## Some Glimpses of WorkConnect
 
-- Home Page
-  ![image](https://github.com/user-attachments/assets/32698eda-1070-451f-9279-6ace30591292)
-  ![image](https://github.com/user-attachments/assets/c2bc0772-e003-445e-a751-3b5ce5ed07d3)
+- Login and Registration Page
+  ![image](https://github.com/user-attachments/assets/36967024-935e-48c4-b48b-76c0a0034ee4)
+  ![image](https://github.com/user-attachments/assets/49eceeb0-d87a-48c7-8be4-9bcf992de48a)
+
   
 - Dashboard
   ![image](https://github.com/user-attachments/assets/efcde9b4-9b7b-411b-afbe-77c08a513446)
