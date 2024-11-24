@@ -23,6 +23,11 @@ Generative AI, in the context of cybersecurity, refers to the use of advanced ma
 
 The technologies and tools used are:
 
+- LLM
+- Langchain
+- Groq
+- Pinecone
+- NLP
 - HTML
 - CSS
 - Javascript
