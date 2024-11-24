@@ -72,10 +72,17 @@ The technologies and tools used are:
 ## Some Glimpses of WorkConnect
 
 - Home Page
-  ![image](https://github.com/sanketdisale871/LadleVision/assets/109368165/f0447ee6-5e35-4bfa-97d5-a4d7e4619db2)
+  ![image](https://github.com/user-attachments/assets/32698eda-1070-451f-9279-6ace30591292)
+  ![image](https://github.com/user-attachments/assets/c2bc0772-e003-445e-a751-3b5ce5ed07d3)
+  
+- Dashboard
+  ![image](https://github.com/user-attachments/assets/efcde9b4-9b7b-411b-afbe-77c08a513446)
+  ![image](https://github.com/user-attachments/assets/51b4ed21-e974-4c91-82e2-1e5203e9a043)
 
-- Admin Dashboard
-  ![image](https://github.com/sanketdisale871/LadleVision/assets/109368165/17396c0d-e04d-4444-9986-9ff6eea56b00)
+- Attack Prediction
+  ![image](https://github.com/user-attachments/assets/3c8dddcd-c147-4edb-96a5-e9ed9f031177)
 
-- Statistics
-  ![image](https://github.com/sanketdisale871/LadleVision/assets/109368165/a5b8ffd1-50a2-4815-844e-fb2f24f7cf9c)
+- ThalesGPT
+  ![image](https://github.com/user-attachments/assets/0fe4fc99-23e4-4ccf-a4ea-c507247bb2ea)
+
+
